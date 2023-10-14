@@ -2,6 +2,7 @@
 export const globals = {
   pageTitleSuffix: 'San Diego Campaign Finance Transparency Dashboard',
   siteName: `Follow the Money San Diego`,
+  // siteTitle: `City of San Diego - Campaign Finance Transparency Dashboard`,
   siteSubTitle: `The City's Campaign Finance Transparency Dashboard`,
   siteCaption: `See how local campaigns are financed so you can be informed before you vote.`,
   contributionsColor: '#3392ff',

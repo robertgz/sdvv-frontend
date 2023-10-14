@@ -1,0 +1,57 @@
+<div class="committee-details">
+  
+  <!-- <gql-candidate-details-header
+    [candidateId]="candidateId"
+  ></gql-candidate-details-header> -->
+
+<!-- 
+  TABS
+    raised/contributions TAB
+      summary CARD
+        chart monetary amd non-monetary for the five contribution types
+      by location CARD
+      by occupation CARD
+      by employer CARD
+      CARD
+        contributions by: day | week | month
+      CARD
+        view filter and sort transactions
+    spent/expenditures TAB
+      CARD
+        by expense code
+      CARD
+        supporting/opposed other candidates / independent expenditures
+      CARD
+        spending by: day | week | month
+    loans TAB
+ -->
+
+  <mat-tab-group dynamicHeight mat-align-tabs="space-around" mat-align-tabs="start">
+    <mat-tab label="Raised / Contributions">
+      <!-- <ng-template matTabContent>
+        <details-tab-raised-v-spent  class="details-tab"
+          [candidateId]="candidateId"
+        ></details-tab-raised-v-spent>
+      </ng-template> -->
+    </mat-tab>
+
+    <mat-tab label="Spent / Expenditures">
+      <!-- <ng-template matTabContent>
+        <contributions-by-occupation-tab  class="details-tab"
+          [candidateId]="candidateId"
+        ></contributions-by-occupation-tab>
+      </ng-template> -->
+    </mat-tab>
+
+    <mat-tab label="Loans">
+      <!-- <ng-template matTabContent>
+        <contributions-by-location-tab class="details-tab"
+          [candidateId]="candidateId"
+        ></contributions-by-location-tab>
+      </ng-template> -->
+    </mat-tab>
+
+
+  </mat-tab-group>
+
+</div>

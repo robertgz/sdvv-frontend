@@ -5,6 +5,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faUniversity, faBalanceScale, faMapMarkedAlt, faQuestion, faBars, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { SideMenuService } from 'src/app/public/services/side-menu.service';
+import { globals } from 'src/app/globals';
 
 @Component({
   standalone: true,
@@ -20,6 +21,9 @@ import { SideMenuService } from 'src/app/public/services/side-menu.service';
 export class HeaderComponent {
 
   homeLink = '/home';
+
+  // ftmLogoURL = '../../../assets/home/follow-the-money-sd.png';
+  ftmAltText = globals.siteName;
 
   vvLogoURL = '../../../assets/home/VV_Logo_Reversed@2x.png';
   vvAltText = `Voter's Voice Initiative`;
