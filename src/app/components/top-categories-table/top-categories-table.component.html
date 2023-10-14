@@ -4,7 +4,10 @@
 
     <ng-container matColumnDef="name">
       <td mat-cell *matCellDef="let category" class='category-name'
-      [style.box-shadow]="category.boxShadowStyle">{{category.name}}</td>
+      [style.box-shadow]="category.boxShadowStyle">
+        <!-- {{category.name}} -->
+        <a [routerLink]="['/committee']" [queryParams]="{ name: category.name }">{{category.name}}</a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="value">

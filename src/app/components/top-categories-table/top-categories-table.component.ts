@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, Output, EventEmitter, OnInit} from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { getCompactFormattedCurrency } from 'src/app/public/util/number-formatter';
 
 export interface Category {
@@ -14,6 +15,7 @@ export interface Category {
   standalone: true,
   imports: [
     MatTableModule,
+    RouterModule
   ],
   selector: 'app-top-categories-table',
   templateUrl: './top-categories-table.component.html',
@@ -28,7 +30,8 @@ export class TopCategoriesTableComponent implements OnChanges, OnInit {
   dataSource;
   displayedColumns: string[] = ['name', 'value', 'percent'];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
+
   ngOnInit(): void {
     let categories = this.categories;
     this.setTabletData(categories);

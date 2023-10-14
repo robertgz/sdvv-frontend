@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 enum CommitteeType {
   C = "Cand/Officeholder Controlled",
@@ -10,16 +11,28 @@ enum CommitteeType {
 @Component({
   standalone: true,
   selector: 'committee-details',
-  // imports: [],
+  imports: [],
   template: `
-    <h1>{{committeeName}}</h1>
+    <h1>{{name}}</h1>
   `,
 })
 export class CommitteeDetailsComponent {
   @Input() committeeName = 'Default Committee Name';
   @Input() committeeType: CommitteeType;
 
-  // component logic
+  public name = '';
+
+  constructor(
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.name = params['name'];
+      console.log({ name: this.name });
+    });
+  }
+
 }
 
 /**

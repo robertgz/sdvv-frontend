@@ -35,6 +35,10 @@ export const MAIN_ROUTES: Routes = [
       }
     ],
   },
+  { 
+    path: 'committee',
+    loadComponent: () => import('../pages/committees/committee-details.component').then(mod => mod.CommitteeDetailsComponent),
+  },
   { path: 'splash', redirectTo: '', pathMatch: 'full' },
   {
     path: 'about',
