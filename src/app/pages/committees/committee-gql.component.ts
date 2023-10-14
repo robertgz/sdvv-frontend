@@ -37,7 +37,7 @@ export class CommitteeGQLComponent  implements OnChanges {
   
   update(committeeName: string) {
     this.name = committeeName;
-    console.log({ committeeName});
+    // console.log({ committeeName});
 
     if (!this.name) { return; }
 
@@ -49,8 +49,8 @@ export class CommitteeGQLComponent  implements OnChanges {
       const response: CommitteeResponse = result.data;
       const committeeName = response.committee.name;
 
-    console.log({ result });
-    console.log({ response });
+    // console.log({ result });
+    // console.log({ response });
 
     });
   }

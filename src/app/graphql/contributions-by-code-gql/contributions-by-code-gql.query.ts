@@ -10,16 +10,14 @@ interface AmountsByCode {
 }
 
 export interface ContributionsByCode {
-  candidate: {
-    committee: {
-      contributions: {
-        categorizedBy: {
-          method: {
-            monetary?: AmountsByCode
-            nonMonetary?: AmountsByCode
-          }
+  committee: {
+    contributions: {
+      categorizedBy: {
+        method: {
+          monetary?: AmountsByCode
+          nonMonetary?: AmountsByCode
         }
-      };
+      }
     };
   };
 }
@@ -39,19 +37,18 @@ export const CONTRIBUTIONS_BY_CODE_FRAGMENT = gql`
 })
 export class ContributionsByCodeGQL extends Query<Response> { 
   document = gql`
-    query monetaryContributionsByCode ($candidateId: String!, $includeMonetary: Boolean!, $includeNonMonetary: Boolean!) {
-      candidate(id: $candidateId) {
-        fullName
-        committee {
-          contributions {
-            categorizedBy {
-              method {
-                monetary @include(if: $includeMonetary) {
-                  ...CodeFields
-                }
-                nonMonetary @include(if: $includeNonMonetary) {
-                  ...CodeFields
-                }
+    query Committee($committeeName: String!) {
+      committee(committeeName: $committeeName) {
+        name
+        contributions {
+          sum
+          categorizedBy {
+            method {
+              monetary {
+                ...CodeFields
+              }
+              nonMonetary {
+                ...CodeFields
               }
             }
           }

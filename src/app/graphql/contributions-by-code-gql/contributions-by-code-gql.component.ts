@@ -1,8 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ContributionsByCodeStackedBarComponent } from 'lib-ui-charts';
+
+import { GraphQLModule } from '../graphql.module';
 import { ContributionsByCodeGQL, ContributionsByCode } from './contributions-by-code-gql.query';
 
 @Component({
+  standalone: true,
   selector: 'gql-contributions-by-code',
+  imports: [
+    GraphQLModule,
+    ContributionsByCodeStackedBarComponent,
+  ],
+  providers: [ ContributionsByCodeGQL ], 
   template: `
     <contributions-by-code-stacked-bar
       [monetaryContributionsByCode]="monetaryContributions"
@@ -11,7 +21,7 @@ import { ContributionsByCodeGQL, ContributionsByCode } from './contributions-by-
   `,
 })
 export class ContributionsByCodeGQLComponent implements OnInit {
-  @Input() candidateId: string;
+  @Input() committeeName: string;
 
   monetaryContributions = {};
   nonMonetaryContributions = {};
@@ -21,22 +31,21 @@ export class ContributionsByCodeGQLComponent implements OnInit {
   ngOnInit() {
 
     this.contributionsByCodeGQL.watch({
-      candidateId: this.candidateId,
-      includeMonetary: true,
-      includeNonMonetary: true,
+      committeeName: this.committeeName,
     }, {
       // errorPolicy: 'all',
     }).valueChanges.subscribe( (result: any) => {
+      console.log(result)
       const contributionsByCode: ContributionsByCode = result.data;
 
-      if (contributionsByCode.candidate) {
-        const monetary = contributionsByCode.candidate.committee.contributions.categorizedBy.method.monetary;
+      if (contributionsByCode.committee) {
+        const monetary = contributionsByCode.committee.contributions.categorizedBy.method.monetary;
 
         this.monetaryContributions = { ...monetary };
         delete this.monetaryContributions['__typename'];
 
 
-        const nonMonetary = contributionsByCode.candidate.committee.
+        const nonMonetary = contributionsByCode.committee.
         contributions.categorizedBy.method.nonMonetary;
 
         this.nonMonetaryContributions = { ...nonMonetary };

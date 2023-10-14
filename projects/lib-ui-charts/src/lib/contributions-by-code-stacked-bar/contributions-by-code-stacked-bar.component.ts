@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ECharts, EChartsOption } from 'echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { getCompactFormattedCurrency } from '../shared/number-formatter'
 
@@ -17,7 +18,11 @@ enum DatasetIndex {
 }
 
 @Component({
+  standalone: true,
   selector: 'contributions-by-code-stacked-bar',
+  imports: [
+    NgxEchartsModule,
+  ],
   template: `
   <div class="total-raised-chart" echarts 
     [initOpts]="initOpts"
