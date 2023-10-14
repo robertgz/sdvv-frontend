@@ -19,6 +19,8 @@ export class TitleMetaTagService {
     let candidate = '';
     let imageFileName = '';
 
+    // console.log({ items })
+
     if (items.length > 0) {
       year = items[0].label;
     }
@@ -30,7 +32,7 @@ export class TitleMetaTagService {
     }
 
     if (items.length === 0) {
-      pageTitle = `Choose a Year | ${globals.pageTitleSuffix}`;
+      // pageTitle = `Choose a Year | ${globals.pageTitleSuffix}`;
       imageFileName = 'years_preview.png';
     } else if (items.length === 1) {
       pageTitle = `Candidate Offices for ${year} | ${globals.pageTitleSuffix}`;

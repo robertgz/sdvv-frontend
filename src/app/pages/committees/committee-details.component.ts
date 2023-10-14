@@ -1,5 +1,6 @@
+import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 enum CommitteeType {
   C = "Cand/Officeholder Controlled",
@@ -11,7 +12,9 @@ enum CommitteeType {
 @Component({
   standalone: true,
   selector: 'committee-details',
-  imports: [],
+  imports: [
+    CommonModule,
+  ],
   template: `
     <h1>{{name}}</h1>
   `,
