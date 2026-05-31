@@ -26,14 +26,14 @@ import { getSupportedVsOpposedComparison } from './options-phase-1/independent-e
         [titleText]="titleIndExp"
         [tooltipText]="tooltipIndExp"
       ></chart-title>
-      <ng-container *ngIf="processedChartData() as data">
+      @if (processedChartData(); as data) {
         <angular-echarts
           [options]="data.options"
           [height]="data.height"
           [loading]="isLoading()"
           (chartClick)="onChartClick($event)"
         ></angular-echarts>
-      </ng-container>
+      }
       <div class="candidates-independent-expenditures-comparison-footnote">
         <p><strong>Note:</strong> {{ footnote }}</p>
       </div>
