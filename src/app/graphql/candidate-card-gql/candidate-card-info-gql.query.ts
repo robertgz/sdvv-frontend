@@ -13,6 +13,7 @@ export interface CandidateCardInfoResponse {
     office: string;
     district: string;
     electionYear: string;
+    isNotOnBallot: boolean;
   };
 }
 
@@ -33,6 +34,7 @@ export class CandidateCardInfoGQL extends Query<Response> {
         office
         district
         electionYear
+        isNotOnBallot
       }
     }
   `;
