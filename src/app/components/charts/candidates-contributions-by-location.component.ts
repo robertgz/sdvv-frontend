@@ -18,14 +18,14 @@ import { getContributionsByInOutCity } from './options-phase-1/contributions-by-
         [titleText]="titleContribLoc"
         [tooltipText]="tooltipContribLoc"
       ></chart-title>
-      <ng-container *ngIf="processedChartData() as data">
+      @if (processedChartData(); as data) {
         <angular-echarts
           [options]="data.options"
           [height]="data.height"
           [loading]="isLoading()"
           (chartClick)="onChartClick($event)"
         ></angular-echarts>
-      </ng-container>
+      }
       <div class="candidates-contributions-by-location-comparison-footnote">
         <p><strong>Note:</strong> {{ footnote }}</p>
       </div>
@@ -57,7 +57,8 @@ export class CandidateContributionsByLocationComparisonChartsComponent {
   isLoading = this.dataService.isLoading;
 
   titleContribLoc = 'Contributions to Candidates';
-  tooltipContribLoc = 'Contributions more than $100 per year as reported on Form 460';
+  tooltipContribLoc =
+    'Contributions more than $100 per year as reported on Form 460';
   footnote = `Itemized contributions as reported on FPPC Form 460. Contributions are itemized when a contributor's cumulative contributions to a committee total $100 or more within a calendar year. See FAQ for more.`;
 
   onChartClick(params: any) {
