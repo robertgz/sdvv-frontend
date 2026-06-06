@@ -26,14 +26,20 @@ import { getSupportedVsOpposedComparison } from './options-phase-1/independent-e
         [titleText]="titleIndExp"
         [tooltipText]="tooltipIndExp"
       ></chart-title>
-      <ng-container *ngIf="processedChartData() as data">
-        <angular-echarts
-          [options]="data.options"
-          [height]="data.height"
-          [loading]="isLoading()"
-          (chartClick)="onChartClick($event)"
-        ></angular-echarts>
-      </ng-container>
+      @if (hasData()) {
+        @if (processedChartData(); as data) {
+          <angular-echarts
+            [options]="data.options"
+            [height]="data.height"
+            [loading]="isLoading()"
+            (chartClick)="onChartClick($event)"
+          ></angular-echarts>
+        }
+      } @else {
+        <div class="no-data">
+          No Independent Expenditures by Outside Committees Found
+        </div>
+      }
       <div class="candidates-independent-expenditures-comparison-footnote">
         <p><strong>Note:</strong> {{ footnote }}</p>
       </div>
@@ -50,6 +56,14 @@ import { getSupportedVsOpposedComparison } from './options-phase-1/independent-e
         padding: 15px 25px 15px 25px;
         background: #fff;
         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.21);
+
+        .no-data {
+          margin: 20px;
+          text-align: center;
+          font-size: 18px;
+          font-weight: bold;
+          color: #999999;
+        }
 
         .candidates-independent-expenditures-comparison-footnote {
           p {
@@ -135,6 +149,14 @@ export class CandidatesIndependentExpendituresComparisonChartsComponent
   public preProcessedData = computed(() => this.state().data);
   public isLoading = computed(() => this.state().loading);
   // public hasError = computed(() => this.state().error);
+  public hasData = computed(
+    () =>
+      this.state().data?.candidateSeries?.some(
+        (candidate) =>
+          (candidate.oppose.length ?? 0) > 0 ||
+          (candidate.support.length ?? 0) > 0,
+      ) ?? false,
+  );
 
   public processedChartData = computed(() => {
     const data = this.preProcessedData();
