@@ -6,6 +6,10 @@
       <div class="candidate-image-container">
         <div class="candidate-image">
           <img [src]="candidateImg" [alt]="fullName">
+
+          <div *ngIf="isNotOnBallot" class="image-overlay">
+            <p class="overlay-text">Not on ballot</p>
+        </div>
         </div>
       </div>
 
