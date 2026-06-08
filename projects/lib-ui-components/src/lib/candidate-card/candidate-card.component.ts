@@ -39,6 +39,7 @@ export class CandidateCardComponent implements OnChanges {
       ? candidateInfo.imageUrl
       : this.defaultImagePath;
     this.firstName = candidateInfo.firstName;
+    this.isNotOnBallot = candidateInfo.isNotOnBallot;
     this.lastName = candidateInfo.lastName;
     this.fullName = candidateInfo.fullName;
     this.description = candidateInfo.description ?? '';
@@ -88,6 +89,8 @@ export class CandidateCardComponent implements OnChanges {
   donors: number = 0;
   inSupport: number = 0;
   inOpposition: number = 0;
+
+  isNotOnBallot: boolean = false;
 
   buttonText: string = 'See Details';
   buttonLink: string = 'details';

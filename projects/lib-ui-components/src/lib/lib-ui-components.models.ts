@@ -22,6 +22,7 @@ export interface CandidateInfo {
   description?: string;
   imageUrl?: string;
   website?: string;
+  isNotOnBallot: boolean;
 }
 
 export interface CommitteeData {
